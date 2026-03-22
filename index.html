@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Coach | Personalized Fitness Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-one" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-two" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="kicker">Adaptive Wellness Planner</p>
+    <h1>Health Coach</h1>
+    <p class="subtext">Personalized health and fitness recommendations powered by your daily habits, goals, and body profile.</p>
+  </header>
+
+  <main class="layout wizard-layout">
+    <section class="panel wizard-panel">
+      <div class="wizard-top">
+        <p class="screen-count" id="screen-count">Screen 1 of 8</p>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <form id="coach-form" novalidate>
+        <article class="screen active" data-screen="1">
+          <h2>Screen 1: Welcome</h2>
+          <p class="screen-copy">This guided check-in takes you through 8 screens and builds a personal weekly plan.</p>
+          <div class="welcome-grid">
+            <div class="welcome-card">
+              <h3>What You Get</h3>
+              <p>Training, nutrition, recovery, and action priorities based on your profile.</p>
+            </div>
+            <div class="welcome-card">
+              <h3>Time Needed</h3>
+              <p>About 2 minutes to complete all screens.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="screen" data-screen="2">
+          <h2>Screen 2: Basic Profile</h2>
+          <div class="grid two-col">
+            <label>
+              Name
+              <input type="text" id="name" maxlength="60" placeholder="Enter your name" required />
+            </label>
+            <label>
+              Age
+              <input type="number" id="age" min="12" max="90" required />
+            </label>
+          </div>
+          <div class="grid two-col">
+            <label>
+              Biological Sex
+              <select id="sex" required>
+                <option value="">Select</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </label>
+          </div>
+        </article>
+
+        <article class="screen" data-screen="3">
+          <h2>Screen 3: Body Measurements</h2>
+          <div class="grid two-col">
+            <label>
+              Height (cm)
+              <input type="number" id="height" min="120" max="230" required />
+            </label>
+            <label>
+              Weight (kg)
+              <input type="number" id="weight" min="35" max="250" step="0.1" required />
+            </label>
+          </div>
+        </article>
+
+        <article class="screen" data-screen="4">
+          <h2>Screen 4: Activity Snapshot</h2>
+          <div class="grid two-col">
+            <label>
+              Activity Level
+              <select id="activity" required>
+                <option value="">Select</option>
+                <option value="sedentary">Sedentary (little or no exercise)</option>
+                <option value="light">Lightly active (1-3 days/week)</option>
+                <option value="moderate">Moderately active (3-5 days/week)</option>
+                <option value="very">Very active (6-7 days/week)</option>
+              </select>
+            </label>
+            <label>
+              Daily Steps
+              <input type="number" id="steps" min="1000" max="40000" step="100" required />
+            </label>
+          </div>
+        </article>
+
+        <article class="screen" data-screen="5">
+          <h2>Screen 5: Goal Setting</h2>
+          <div class="grid two-col">
+            <label>
+              Primary Goal
+              <select id="goal" required>
+                <option value="">Select</option>
+                <option value="fat-loss">Fat loss</option>
+                <option value="maintenance">Weight maintenance</option>
+                <option value="muscle-gain">Muscle gain</option>
+                <option value="endurance">Endurance improvement</option>
+              </select>
+            </label>
+            <label>
+              Training Days Per Week
+              <input type="number" id="trainingDays" min="1" max="7" required />
+            </label>
+          </div>
+        </article>
+
+        <article class="screen" data-screen="6">
+          <h2>Screen 6: Recovery Inputs</h2>
+          <div class="grid two-col">
+            <label>
+              Average Sleep (hours/night)
+              <input type="number" id="sleep" min="3" max="12" step="0.1" required />
+            </label>
+            <label>
+              Stress Level
+              <select id="stress" required>
+                <option value="">Select</option>
+                <option value="low">Low</option>
+                <option value="medium">Moderate</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+          </div>
+        </article>
+
+        <article class="screen" data-screen="7">
+          <h2>Screen 7: Nutrition Style</h2>
+          <label>
+            Dietary Preference
+            <select id="diet" required>
+              <option value="">Select</option>
+              <option value="balanced">Balanced</option>
+              <option value="high-protein">High Protein</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="low-carb">Low Carb</option>
+            </select>
+          </label>
+
+          <label>
+            Health Notes (optional)
+            <textarea id="notes" rows="3" placeholder="Example: mild knee pain, beginner in strength training"></textarea>
+          </label>
+        </article>
+
+        <article class="screen" data-screen="8">
+          <h2>Screen 8: Your Plan</h2>
+          <p class="screen-copy">Generate your personalized recommendations now.</p>
+          <p class="db-pill" id="db-status">Database status: Waiting for your first submission.</p>
+
+          <section class="result-panel" id="result-panel" aria-live="polite">
+            <div id="empty-state" class="empty-state">
+              Click "Generate Plan" to compute your custom output.
+            </div>
+
+            <div id="result-content" class="hidden">
+              <div class="metrics" id="metrics"></div>
+
+              <article class="recommendation-block">
+                <h3>Training Focus</h3>
+                <p id="training-plan"></p>
+              </article>
+
+              <article class="recommendation-block">
+                <h3>Nutrition Focus</h3>
+                <p id="nutrition-plan"></p>
+              </article>
+
+              <article class="recommendation-block">
+                <h3>Recovery Focus</h3>
+                <p id="recovery-plan"></p>
+              </article>
+
+              <article class="recommendation-block">
+                <h3>Next 7 Days Action List</h3>
+                <ul id="action-list"></ul>
+              </article>
+            </div>
+          </section>
+        </article>
+
+        <div class="nav-row">
+          <button type="button" id="prev-btn" class="ghost-btn">Previous</button>
+          <button type="button" id="next-btn">Next</button>
+          <button type="submit" id="submit-btn" class="hidden">Generate Plan</button>
+        </div>
+      </form>
+
+      <p class="fine-print">This tool provides educational guidance and is not a substitute for professional medical advice.</p>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
